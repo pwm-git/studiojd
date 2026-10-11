@@ -81,10 +81,10 @@ function JessicaDantasPage() {
     const form = event.currentTarget;
     const values = Object.fromEntries(new FormData(form)) as Record<string, string>;
     const candidate = {
-      name: values.name ?? "",
+      name: values["name"] ?? "",
       phone,
-      city: values.city ?? "",
-      birthDate: values.birthDate ?? "",
+      city: values["city"] ?? "",
+      birthDate: values["birthDate"] ?? "",
       consent,
     };
     const parsed = leadSchema.safeParse(candidate);
