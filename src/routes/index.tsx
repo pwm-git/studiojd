@@ -285,7 +285,7 @@ function JessicaDantasPage() {
       <footer className="border-t border-primary/30 bg-card py-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 sm:flex-row sm:items-end sm:justify-between lg:px-8">
           <div><img src={studioJdLogo} alt="Studio JD" width={1024} height={1008} loading="lazy" className="h-16 w-auto" /><p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">Especialista em alisamentos</p></div>
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Jessica Dantas. Todos os direitos reservados.</p>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Studio JD. Todos os direitos reservados.</p>
         </div>
       </footer>
     </main>
