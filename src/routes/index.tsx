@@ -12,6 +12,7 @@ import {
 import { FormEvent, useState } from "react";
 
 import heroImage from "@/assets/jessica-hero.jpg";
+import studioJdLogo from "@/assets/studio-jd-logo.png";
 import resultOne from "@/assets/hair-result-01.jpg";
 import resultTwo from "@/assets/hair-result-02.jpg";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -23,13 +24,13 @@ import { leadSchema, submitLead, type LeadInput } from "@/lib/leads.functions";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Jessica Dantas | Especialista em Alisamentos" },
+      { title: "Studio JD | Especialista em Alisamentos" },
       {
         name: "description",
         content:
-          "Conheça o trabalho de Jessica Dantas, especialista em alisamentos com atendimento cuidadoso e personalizado.",
+          "Conheça o Studio JD, especialista em alisamentos com atendimento cuidadoso e personalizado.",
       },
-      { property: "og:title", content: "Jessica Dantas | Especialista em Alisamentos" },
+      { property: "og:title", content: "Studio JD | Especialista em Alisamentos" },
       {
         property: "og:description",
         content: "Alisamentos com cuidado, precisão e beleza para valorizar a sua rotina.",
@@ -113,8 +114,8 @@ function JessicaDantasPage() {
     <main>
       <header className="absolute inset-x-0 top-0 z-20 border-b border-border/70">
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
-          <a href="#inicio" aria-label="Jessica Dantas — início" className="font-display text-2xl font-semibold text-foreground">
-            Jessica <span className="text-primary">Dantas</span>
+          <a href="#inicio" aria-label="Studio JD — início" className="flex items-center">
+            <img src={studioJdLogo} alt="Studio JD" width={1024} height={1008} className="h-14 w-auto" />
           </a>
           <nav aria-label="Navegação principal" className="hidden items-center gap-8 text-xs uppercase text-muted-foreground md:flex">
             <a className="transition-colors hover:text-primary" href="#sobre">Sobre</a>
@@ -137,8 +138,8 @@ function JessicaDantasPage() {
             <p className="mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-primary">
               <span className="h-px w-10 bg-primary" /> Especialista em alisamentos
             </p>
-            <h1 className="font-display text-6xl font-medium leading-[0.88] text-foreground sm:text-7xl lg:text-8xl">
-              Jessica<br /><span className="italic text-pink-botanical">Dantas</span>
+            <h1>
+              <img src={studioJdLogo} alt="Studio JD — Especialista em alisamentos" width={1024} height={1008} className="w-64 sm:w-80 lg:w-96" />
             </h1>
             <p className="mt-7 max-w-lg text-base leading-7 text-muted-foreground sm:text-lg">
               Cuidado nos detalhes. Precisão em cada etapa. Um alisamento pensado para valorizar sua beleza e simplificar sua rotina.
@@ -163,7 +164,7 @@ function JessicaDantasPage() {
           <div>
             <h2 className="font-display text-4xl leading-tight sm:text-6xl">Beleza bem-feita nasce do <span className="italic text-pink-botanical">cuidado.</span></h2>
             <div className="mt-10 grid gap-8 text-sm leading-7 text-muted-foreground sm:grid-cols-2">
-              <p>Jessica Dantas é uma profissional caprichosa, correta e comprometida com um atendimento claro. Para ela, fazer bem-feito é respeitar o processo e cuidar de cada detalhe.</p>
+              <p>Por trás do Studio JD está Jessica, uma profissional caprichosa, correta e comprometida com um atendimento claro. Para ela, fazer bem-feito é respeitar o processo e cuidar de cada detalhe.</p>
               <p>Sua forma prática de trabalhar transforma escolhas complexas em uma experiência objetiva, acolhedora e pensada para a vida real de cada cliente.</p>
             </div>
             <div className="mt-12 flex flex-wrap gap-x-10 gap-y-4 border-t border-border pt-7 text-xs uppercase tracking-[0.18em] text-foreground">
@@ -283,7 +284,7 @@ function JessicaDantasPage() {
 
       <footer className="border-t border-primary/30 bg-card py-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 sm:flex-row sm:items-end sm:justify-between lg:px-8">
-          <div><p className="font-display text-3xl">Jessica <span className="text-primary">Dantas</span></p><p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">Especialista em alisamentos</p></div>
+          <div><img src={studioJdLogo} alt="Studio JD" width={1024} height={1008} loading="lazy" className="h-16 w-auto" /><p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">Especialista em alisamentos</p></div>
           <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Jessica Dantas. Todos os direitos reservados.</p>
         </div>
       </footer>
