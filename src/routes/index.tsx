@@ -162,7 +162,7 @@ function JessicaDantasPage() {
             <div className="mt-6 h-20 w-px bg-gradient-to-b from-primary to-transparent" />
           </div>
           <div>
-            <h2 className="font-display text-4xl leading-tight sm:text-6xl">Beleza bem-feita nasce do <span className="italic text-pink-botanical">cuidado.</span></h2>
+            <h2 className="font-display text-4xl leading-tight sm:text-6xl">Beleza bem-feita nasce do <span className="italic text-gold-soft">cuidado.</span></h2>
             <div className="mt-10 grid gap-8 text-sm leading-7 text-muted-foreground sm:grid-cols-2">
               <p>Por trás do Studio JD está Jessica, uma profissional caprichosa, correta e comprometida com um atendimento claro. Para ela, fazer bem-feito é respeitar o processo e cuidar de cada detalhe.</p>
               <p>Sua forma prática de trabalhar transforma escolhas complexas em uma experiência objetiva, acolhedora e pensada para a vida real de cada cliente.</p>
