@@ -157,7 +157,7 @@
     overflow-x: hidden;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
 
   ::selection {
     background: var(--color-primary);
@@ -180,4 +180,30 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .reveal-up { animation: reveal-up 0.8s ease-out both; }
+}
+
+@media (max-width: 639px) {
+  main > section:not(#inicio) { padding-block: 3.5rem; }
+  main section h2 { font-size: 2.25rem; line-height: 1.12; }
+  main section p.text-sm { font-size: 1rem; line-height: 1.75; }
+  #sobre > div { gap: 1.5rem; }
+  #sobre > div > div:first-child > div { display: none; }
+  #sobre h2 + div { margin-top: 1.5rem; gap: 1rem; font-size: 1rem; }
+  #sobre h2 + div + div { margin-top: 1.75rem; gap: 1rem; }
+  #especialidade article { padding-block: 1.5rem; }
+  #especialidade article h3 { margin-top: 1rem; }
+  #especialidade .mt-16 { margin-top: 2rem; }
+  main section .mt-16.grid { margin-top: 2rem; }
+  main section article.min-h-64 { min-height: 0; padding: 1.5rem; }
+  main section article.min-h-64 h3 { margin-top: 1rem; }
+  #agendamento form { min-width: 0; padding: 1.25rem; }
+  #agendamento form input { min-width: 0; width: 100%; font-size: 1rem; }
+  #agendamento form label > span { font-size: 0.875rem; }
+  #agendamento form button[type="submit"] { height: auto; min-height: 3rem; white-space: normal; padding: 0.875rem 1rem; letter-spacing: 0.08em; }
+  main section button[data-slot="accordion-trigger"] { gap: 1rem; line-height: 1.5; }
+  main footer a { display: inline-flex; min-height: 2.75rem; align-items: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

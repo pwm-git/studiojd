@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep lead capture writes behind a validated TanStack server function because public forms must never expose lead records.
+- Keep mobile presentation adjustments scoped to the homepage and its small-screen CSS; preserve desktop styling and lead-capture behavior.
