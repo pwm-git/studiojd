@@ -6,6 +6,8 @@ import {
   CalendarDays,
   Check,
   MessageCircle,
+  Menu,
+  X,
   ShieldCheck,
   Sparkle,
 } from "lucide-react";
@@ -76,6 +78,7 @@ function JessicaDantasPage() {
   const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -112,8 +115,8 @@ function JessicaDantasPage() {
 
   return (
     <main>
-      <header className="absolute inset-x-0 top-0 z-20 border-b border-border/70">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
+      <header className="absolute inset-x-0 top-0 z-20 border-b border-border/70" onKeyDown={(event) => { if (event.key === "Escape") setMenuOpen(false); }}>
+        <div className="mx-auto grid h-18 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-5 md:flex md:h-20 md:justify-between lg:px-8">
           <a href="#inicio" aria-label="Studio JD — início" className="flex items-center">
             <img src={studioJdLogo} alt="Studio JD" width={1024} height={1008} className="h-14 w-auto" />
           </a>
@@ -123,34 +126,42 @@ function JessicaDantasPage() {
             <a className="transition-colors hover:text-primary" href="#resultados">Resultados</a>
             <a className="transition-colors hover:text-primary" href="#contato">Contato</a>
           </nav>
-          <Button asChild variant="luxuryOutline" className="h-10 px-4 text-xs uppercase tracking-[0.18em]">
+          <div className="flex shrink-0 items-center gap-2">
+          <Button asChild variant="luxuryOutline" className="h-11 px-4 text-xs uppercase tracking-[0.18em]">
             <a href="#agendamento">Agendar</a>
           </Button>
+          <Button variant="ghost" size="icon" className="h-11 w-11 md:hidden" aria-label={menuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X /> : <Menu />}
+          </Button>
+          </div>
         </div>
+        {menuOpen && <nav id="mobile-navigation" aria-label="Navegação no celular" className="absolute inset-x-0 top-full grid border-b border-border bg-background px-5 py-3 md:hidden">
+          {[["Sobre", "sobre"], ["Especialidade", "especialidade"], ["Resultados", "resultados"], ["Contato", "contato"]].map(([label, anchor]) => <a key={anchor} href={`#${anchor}`} onClick={() => setMenuOpen(false)} className="flex min-h-12 items-center border-b border-border/50 text-sm text-foreground last:border-0 focus-visible:outline-2 focus-visible:outline-ring">{label}</a>)}
+        </nav>}
       </header>
 
-      <section id="inicio" className="relative min-h-[94svh] overflow-hidden">
+      <section id="inicio" className="relative overflow-hidden sm:min-h-[94svh]">
         <img src={heroImage} alt="Profissional em um salão contemporâneo com plantas rosadas" width={1408} height={1712} className="absolute inset-0 h-full w-full object-cover object-[65%_center]" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/35" />
-        <div className="relative mx-auto flex min-h-[94svh] max-w-7xl items-center px-5 pb-16 pt-28 lg:px-8">
-          <div className="reveal-up max-w-2xl">
-            <p className="mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.28em] text-primary">
-              <span className="h-px w-10 bg-primary" /> Especialista em alisamentos
+        <div className="relative mx-auto flex min-h-[min(640px,88svh)] max-w-7xl items-center px-5 pb-16 pt-24 sm:min-h-[94svh] sm:pt-28 lg:px-8">
+          <div className="reveal-up min-w-0 w-full max-w-2xl">
+            <p className="mb-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-primary sm:mb-5 sm:gap-3 sm:text-xs sm:tracking-[0.28em]">
+              <span className="h-px w-6 shrink-0 bg-primary sm:w-10" /> Especialista em alisamentos
             </p>
             <h1>
-              <img src={studioJdLogo} alt="Studio JD — Especialista em alisamentos" width={1024} height={1008} className="w-64 sm:w-80 lg:w-96" />
+              <img src={studioJdLogo} alt="Studio JD — Especialista em alisamentos" width={1024} height={1008} className="w-48 max-w-full sm:w-80 lg:w-96" />
             </h1>
-            <p className="mt-7 max-w-lg text-base leading-7 text-muted-foreground sm:text-lg">
+            <p className="mt-4 max-w-lg text-base leading-7 text-muted-foreground sm:mt-7 sm:text-lg">
               Cuidado nos detalhes. Precisão em cada etapa. Um alisamento pensado para valorizar sua beleza e simplificar sua rotina.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-6 grid gap-3 sm:mt-9 sm:flex sm:flex-wrap">
               <Button asChild variant="luxury" size="xl"><a href="#agendamento">Agendar avaliação <ArrowRight /></a></Button>
               <Button asChild variant="luxuryOutline" size="xl"><a href="#sobre">Conheça Jessica</a></Button>
             </div>
           </div>
         </div>
-        <a href="#sobre" aria-label="Ir para a próxima seção" className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+        <a href="#sobre" aria-label="Ir para a próxima seção" className="absolute bottom-3 left-1/2 flex min-h-11 -translate-x-1/2 flex-col items-center justify-center gap-1 text-[10px] uppercase tracking-[0.25em] text-muted-foreground sm:bottom-6">
           Descubra <ArrowDown className="h-4 w-4 text-primary" />
         </a>
       </section>
@@ -233,14 +244,14 @@ function JessicaDantasPage() {
             <span className="flex h-12 w-12 items-center justify-center border border-primary text-primary"><CalendarDays /></span>
             <p className="mt-10 text-xs uppercase tracking-[0.25em] text-primary">Agende seu momento</p>
             <h2 className="mt-5 font-display text-5xl leading-none sm:text-6xl">Pronta para cuidar do seu cabelo?</h2>
-            <p className="mt-6 max-w-lg text-sm leading-7 text-muted-foreground">A agenda online estará disponível em breve. Enquanto isso, deixe seus dados ao lado para receber novidades e facilitar o primeiro contato.</p>
-            <Button variant="luxury" size="xl" disabled className="mt-9"><CalendarDays /> Agenda online em preparação</Button>
+            <p className="mt-6 max-w-lg text-base leading-7 text-muted-foreground">A agenda online estará disponível em breve. Enquanto isso, deixe seus dados no formulário para receber novidades e facilitar o primeiro contato.</p>
+            <Button variant="luxury" size="xl" disabled className="mt-7 h-auto min-h-12 w-full whitespace-normal px-4 py-3 text-[11px] tracking-[0.08em] sm:mt-9 sm:w-auto sm:text-xs sm:tracking-[0.18em]"><CalendarDays className="shrink-0" /> Agenda online em preparação</Button>
           </div>
 
           <form id="contato" onSubmit={handleSubmit} className="border border-border bg-card p-6 sm:p-9" noValidate>
-            <div className="flex items-center justify-between gap-4 border-b border-border pb-6">
-              <div><p className="text-xs uppercase tracking-[0.2em] text-primary">Quero saber mais</p><h3 className="mt-2 font-display text-3xl">Deixe seus dados</h3></div>
-              <Sparkle className="h-6 w-6 text-pink-botanical" />
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 border-b border-border pb-6">
+              <div className="min-w-0"><p className="text-xs uppercase tracking-[0.2em] text-primary">Quero saber mais</p><h3 className="mt-2 font-display text-3xl">Deixe seus dados</h3></div>
+              <Sparkle className="h-6 w-6 shrink-0 text-pink-botanical" />
             </div>
             <div className="mt-7 grid gap-5 sm:grid-cols-2">
               <label className="sm:col-span-2"><span className="mb-2 block text-xs text-muted-foreground">Nome completo</span><Input name="name" autoComplete="name" maxLength={100} required className="h-12" placeholder="Como você gostaria de ser chamada?" /></label>
@@ -248,15 +259,15 @@ function JessicaDantasPage() {
               <label><span className="mb-2 block text-xs text-muted-foreground">Cidade</span><Input name="city" autoComplete="address-level2" maxLength={100} required className="h-12" placeholder="Sua cidade" /></label>
               <label className="sm:col-span-2"><span className="mb-2 block text-xs text-muted-foreground">Data de nascimento</span><Input name="birthDate" type="date" autoComplete="bday" max={new Date().toISOString().slice(0, 10)} required className="h-12 [color-scheme:dark]" /></label>
             </div>
-            <label className="mt-5 flex cursor-pointer items-start gap-3 text-xs leading-5 text-muted-foreground">
-              <Checkbox checked={consent} onCheckedChange={(value) => setConsent(value === true)} aria-label="Autorizar contato" className="mt-0.5" />
+            <label className="mt-5 flex min-h-11 cursor-pointer items-start gap-3 py-2 text-sm leading-6 text-muted-foreground">
+              <Checkbox checked={consent} onCheckedChange={(value) => setConsent(value === true)} aria-label="Autorizar contato" className="mt-1 size-5 shrink-0" />
               Autorizo o uso destes dados para que Jessica Dantas entre em contato comigo sobre atendimento e novidades.
             </label>
             <Button type="submit" variant="luxury" size="xl" disabled={status === "loading"} className="mt-7 w-full">
               {status === "loading" ? "Enviando..." : "Quero receber contato"} <ArrowRight />
             </Button>
             {message && <p role="status" className={`mt-4 text-sm leading-6 ${status === "success" ? "text-primary" : "text-destructive"}`}>{message}</p>}
-            <p className="mt-5 flex items-center justify-center gap-2 text-[11px] text-muted-foreground"><ShieldCheck className="h-3.5 w-3.5" /> Seus dados ficam protegidos e não aparecem publicamente.</p>
+            <p className="mt-5 flex items-start justify-center gap-2 text-xs leading-5 text-muted-foreground"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0" /> Seus dados ficam protegidos e não aparecem publicamente.</p>
           </form>
         </div>
       </section>
